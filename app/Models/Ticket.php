@@ -12,6 +12,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
+  protected $fillable = [
+        'title',
+        'description',
+        'status',
+        'priority',
+        'customer_id',
+        'category_id',
+        'assigned_to',
+    ];
+    
   public function customer()
 {
     return $this->belongsTo(Customer::class);

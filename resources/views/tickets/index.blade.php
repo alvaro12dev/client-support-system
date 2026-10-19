@@ -8,6 +8,9 @@
 </head>
 <body>
     <h1>Tickets de soporte</h1>
+@if (session('success'))
+    <p>{{ session('success') }}</p>
+@endif
 
     @forelse ($tickets as $ticket)
         <article>
