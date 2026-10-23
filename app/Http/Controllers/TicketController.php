@@ -48,4 +48,35 @@ public function store(Request $request)
 }
 
 
+public function show(Ticket $ticket)
+{
+    $ticket->load(['customer', 'category']);
+
+    return view('tickets.show', compact('ticket'));
+}
+
+
+public function edit(Ticket $ticket)
+{
+    return view('tickets.edit', compact('ticket'));
+}
+
+
+public function update(Request $request, Ticket $ticket)
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+        'status' => 'required|in:open,in_progress,closed',
+        'priority' => 'required|in:low,medium,high',
+    ]);
+
+    $ticket->update($validated);
+
+    return redirect()
+        ->route('tickets.show', $ticket)
+        ->with('success', 'Ticket actualizado correctamente.');
+}
+
+
 }

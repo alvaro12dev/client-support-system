@@ -14,8 +14,11 @@
 
     @forelse ($tickets as $ticket)
         <article>
-            <h2>{{ $ticket->title }}</h2>
-
+        <h2>
+            <a href="{{ route('tickets.show', $ticket) }}">
+                {{ $ticket->title }}
+            </a>
+        </h2>
             <p>{{ $ticket->description }}</p>
             <p>Cliente: {{ $ticket->customer->name }}</p>
             <p>Categoría: {{ $ticket->category->name }}</p>
